@@ -1,24 +1,35 @@
-# 🛠️ Dev Journal – Smart Photo Storage
+# 🧠 Design Decisions – Smart Photo Storage
 
-Ini adalah jurnal pengembangan proyek Smart Photo Storage. Catatan ini digunakan untuk melacak keputusan teknis, pertimbangan desain, dan refleksi selama pengembangan berlangsung.
+This document summarize technical considerations and architectural decisions for the Smart Photo Storage project.
+
+---
+
+##  Image Storage
+
+- **Current**: Images are stored locally under the `/uploads` folder and served as static files
+- **Planned**: Will migrate to MinIO or S3-compatible object storage in a later phase
+- **Reason**: Enables decoupling between backend app and storage layer, improves scalability and portability
 
 ---
 
-## 💡 Desain & Pertimbangan Awal
+##  Authentication & JWT
 
-### Penyimpanan Gambar
-- Saat ini disimpan ke disk lokal di folder `/uploads`
-- Akan diganti dengan MinIO pada fase polishing
-- Pertimbangan: agar backend dan storage bisa dipisahkan dengan clean interface
-
-### Autentikasi & JWT
-- JWT disimpan di frontend (sementara) via localStorage
-- Akan di-upgrade ke HTTP-only cookie di fase akhir
-- Middleware untuk verifikasi token sudah diterapkan di backend
-
-### Keamanan Akses Gambar
-- Saat ini folder `/uploads` di-serve secara public
-- Akan diganti dengan endpoint proteksi berbasis user ID
-- Akan dibarengi dengan migrasi ke MinIO
+- **Current**: JWT-based authentication with tokens stored in frontend localStorage
+- **Planned**: Migrate to HTTP-only cookies for improved XSS protection and security best practices
+- **Status**: JWT middleware is already implemented in the backend
 
 ---
+
+##  Image Access Control
+
+- **Current**: `/uploads` folder is publicly accessible
+- **Planned**: Access control via backend endpoint (restricted to photo owners only)
+- **Future**: Protection will be integrated with the migration to MinIO or similar
+
+---
+
+##  Search & Pagination
+
+- **Search**: Case-insensitive partial match on photo `name` field
+- **Pagination**: Implemented using MongoDB `skip` and `limit` strategy
+- **Future**: Will be extended to support semantic search using ML-generated image embeddings
