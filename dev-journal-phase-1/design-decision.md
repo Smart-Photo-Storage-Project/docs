@@ -1,6 +1,6 @@
-# 🧠 Design Decisions – Smart Photo Storage
+# 🧠 Design Decisions [Phase - 1]– Smart Photo Storage
 
-This document summarize technical considerations and architectural decisions for the Smart Photo Storage project.
+This document summarize technical considerations and architectural decisions for the Smart Photo Storage project on the first phase of development.
 
 ---
 
@@ -33,3 +33,16 @@ This document summarize technical considerations and architectural decisions for
 - **Search**: Case-insensitive partial match on photo `name` field
 - **Pagination**: Implemented using MongoDB `skip` and `limit` strategy
 - **Future**: Will be extended to support semantic search using ML-generated image embeddings
+
+
+##  Upload Mechanism
+
+- **Current**: Supports both single and batch photo uploads
+  - Batch upload uses `multipart/form-data` and MongoDB `insertMany`
+- **Next**: Will explore goroutine-based concurrent saves for performance
+- **Planned**: Transition to MinIO with proper metadata and ownership enforcement
+
+##  Containerization
+
+- **Planned**: Add Dockerfiles for backend and frontend
+- **Reason**: Supports reproducible builds, consistent environments, and easier deployment
