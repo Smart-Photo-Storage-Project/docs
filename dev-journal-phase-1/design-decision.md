@@ -44,5 +44,6 @@ This document summarize technical considerations and architectural decisions for
 
 ##  Containerization
 
-- **Planned**: Add Dockerfiles for backend and frontend
+- **Planned**: Dockerfiles to build backend and frontend images
+- **Next**: Docker Compose planned in later phase for full orchestration
 - **Reason**: Supports reproducible builds, consistent environments, and easier deployment
