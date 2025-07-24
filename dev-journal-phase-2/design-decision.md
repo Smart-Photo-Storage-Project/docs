@@ -28,7 +28,7 @@ We use **off-the-shelf pretrained models** instead of training from scratch:
 > ✅ **Following official recommendation**: We use **two separate models**, one for image and one for text embedding.  
 > - Image model: `clip-ViT-B-32`  
 > - Text model: `sentence-transformers/clip-ViT-B-32-multilingual-v1`  
-> This approach is based on the official [M-CLIP documentation](https://www.sbert.net/examples/multilingual/multilingual_clip/README.html), which aligns the multilingual text model to the original CLIP image space.
+> This approach is based on the [M-CLIP documentation](https://huggingface.co/sentence-transformers/clip-ViT-B-32-multilingual-v1), which aligns the multilingual text model to the original CLIP image space.
 
 ---
 
