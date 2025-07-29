@@ -20,12 +20,12 @@ This is made possible by generating **semantic embeddings** for both images and 
 
 ### 1. Use Pretrained Embedding Models
 
-We use **off-the-shelf pretrained models** instead of training from scratch:
+Use **off-the-shelf pretrained models** instead of training from scratch:
 
 - **CLIP (OpenAI)** → for converting images into vector embeddings  
 - **M-CLIP (Multilingual CLIP)** → for converting natural language queries into embeddings (supports **Bahasa Indonesia** and **English**)
 
-> ✅ **Following official recommendation**: We use **two separate models**, one for image and one for text embedding.  
+> ✅ **Following official recommendation**: use **two separate models**, one for image and one for text embedding.  
 > - Image model: `clip-ViT-B-32`  
 > - Text model: `sentence-transformers/clip-ViT-B-32-multilingual-v1`  
 > This approach is based on the [M-CLIP documentation](https://huggingface.co/sentence-transformers/clip-ViT-B-32-multilingual-v1), which aligns the multilingual text model to the original CLIP image space.
@@ -63,9 +63,31 @@ We use **off-the-shelf pretrained models** instead of training from scratch:
 
 ---
 
+## 🧠 Qdrant vs MongoDB: Usage and Responsibilities
+
+Considered whether to store image metadata entirely in Qdrant or partially in MongoDB. Here's the reasoning:
+
+### ✅ Final Decision:
+
+| Use Case                       | Database Used  | Reason                                                                 |
+|-------------------------------|----------------|------------------------------------------------------------------------|
+| User authentication           | MongoDB        | Secure auth, tokens, sessions, indexing support                        |
+| Listing user-uploaded images  | MongoDB        | Efficient for filter/sort/pagination; Qdrant isn't optimized for that |
+| Semantic search               | Qdrant         | Purpose-built for vector similarity, filtering, and ranking           |
+| Storing image vectors         | Qdrant         | With full metadata payload for filtering/searching                    |
+| Full-text search (e.g. name)  | MongoDB (later)| Only added if necessary for UX; avoided for now to reduce complexity  |
+
+> ✅ Qdrant will **store image vector + metadata payload** (e.g. `user_id`, `path`, `name`, `upload_at`)  
+> ✅ MongoDB will **remain primary DB** for account-level data and structured CRUD
+
+> ℹ️ Semantic search endpoint queries Qdrant → optionally uses MongoDB for extra data  
+> ℹ️ List images by user will use MongoDB directly
+
+---
+
 ## 🌐 Language Support
 
-We chose **M-CLIP** because:
+Chose **M-CLIP** because:
 
 - Supports **Bahasa Indonesia** and **English**
 - Allows local and international users to search naturally
@@ -96,5 +118,6 @@ We chose **M-CLIP** because:
 | 🔍 Semantic Search | Compare embeddings using **cosine similarity**                          |
 | 💾 Vector Storage  | Use **Qdrant vector DB**                                                 |
 | 🔁 Inference Flow  | Implemented as separate **FastAPI service** with two models             |
+| 🧠 Dual-DB Design  | Use MongoDB for user auth + listing; Qdrant for semantic search only    |
 | ✅ Recommendation  | Follows official best practices for CLIP + M-CLIP dual-model architecture |
 
