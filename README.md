@@ -20,60 +20,54 @@ This project is designed to showcase real-world engineering skills across backen
 
 ## 📌 Project Goals
 
-- ✅ Build a full-stack product from scratch
-- ✅ Apply modern software engineering practices
-- ✅ Integrate machine learning into a real-world app
-- ✅ Design a modular, scalable architecture
-- ✅ Demonstrate practical system design and implementation skills
+- Build a full-stack product from scratch
+- Apply modern software engineering practices
+- Integrate machine learning into a real-world app
+- Design a modular, scalable architecture
+- Demonstrate practical system design and implementation skills
 
 ---
 
 ## 🗺️ Roadmap
 
-### Phase 1 – MVP
-- [ ] Backend API in Go for photo upload and metadata handling
-- [ ] Frontend in Vue.js for image browsing and upload
-- [ ] Store metadata (e.g., upload time, tags) in MongoDB
-- [ ] Save image files to local disk (`/uploads`)
-- [ ] Dockerized backend and frontend services
+### ✅ Phase 1 – MVP
+- ✅ Backend API in Go for photo upload and metadata handling  
+- ✅ Frontend in Vue.js for image browsing and upload  
+- ✅ Store metadata (e.g., upload time, tags) in MongoDB  
+- ✅ Save image files to local disk (`/uploads`)  
+- ✅ Dockerized backend and frontend services  
 
-### Phase 2 – ML Integration
-- [ ] Create external FastAPI service for image embedding (CLIP/BLIP)
-- [ ] Call inference service from backend after upload
-- [ ] Store image embeddings (as float arrays) in MongoDB
-- [ ] Implement basic semantic search using cosine similarity
+### ✅ Phase 2 – ML & Semantic Search Integration
+- ✅ Create external FastAPI service for image embedding (CLIP/m-CLIP)  
+- ✅ Call inference service from backend after upload  
+- ✅ Store image embeddings in **Qdrant** (vector DB)  
+- ✅ Implement basic semantic search using cosine similarity  
 
-### Phase 3 – Asynchronous Architecture
-- [ ] Add message broker (RabbitMQ)
-- [ ] Queue image embedding jobs on upload
-- [ ] Create ML worker service to process embedding tasks asynchronously
-- [ ] Move toward a loosely coupled, production-like system
+### 🔄 Phase 3 – Asynchronous Architecture & Object Storage *(In Progress)*
+- [ ] Add message broker (RabbitMQ)  
+- [ ] Queue image embedding jobs on upload  
+- [ ] Migrate image storage from local disk to **MinIO (S3-compatible)**  
+- [ ] Move toward a loosely coupled, production-ready pipeline  
 
-### Phase 4 – Polish and Deploy
-- [ ] CI/CD pipeline (GitHub Actions or similar)
-- [ ] Setup local deployment with Docker Compose
-- [ ] Record demo video, write technical blog post
-- [ ] Finalize documentation and diagrams
-
-### Phase 5 – Storage and Search Optimization
-- [ ] Migrate image storage to MinIO (S3-compatible)
-- [ ] Move vector data from MongoDB to Qdrant or Weaviate
-- [ ] Integrate vector DB for fast and scalable semantic search
-
+### 🔜 Phase 4 – Polish and Deploy
+- [ ] CI/CD pipeline (GitHub Actions or similar)  
+- [ ] Local + cloud deployment with Docker Compose or Kubernetes  
+- [ ] Record demo video, write technical blog post  
+- [ ] Finalize documentation and system architecture diagrams  
 ---
 
 ## 🧱 Architecture Overview
 
-The system will consist of modular services:
+The system consists of modular services:
 
-| Service | Description |
-|---------|-------------|
-| `photo-storage-backend` | Go-based API for upload, metadata, and search |
-| `photo-storage-frontend` | Vue.js UI for browsing and uploading photos |
-| `photo-storage-inference` | FastAPI service for generating image embeddings |
-| `photo-storage-worker` | Async task processor for embedding via queue |
-| `photo-storage-infra` | Docker Compose, environment configs, orchestration |
-| `photo-storage-docs` | Planning, architecture, dev journal |
+| Service                 | Description                                            | Repository |
+|-------------------------|--------------------------------------------------------|------------|
+| `photo-storage-backend` | Go-based API for upload, metadata, and search          | [GitHub](https://github.com/Smart-Photo-Storage-Project/backend) |
+| `photo-storage-frontend` | Vue.js UI for browsing and uploading photos           | [GitHub](https://github.com/Smart-Photo-Storage-Project/frontend) |
+| `photo-storage-inference` | FastAPI service for generating image embeddings      | [GitHub](https://github.com/Smart-Photo-Storage-Project/inference) |
+| `photo-storage-infra`   | Docker Compose, environment configs, orchestration     | [TBA]() |
+| `photo-storage-docs`    | Planning, architecture, dev journal                    | [TBA]() |
+
 
 ---
 
