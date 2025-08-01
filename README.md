@@ -30,14 +30,14 @@ This project is designed to showcase real-world engineering skills across backen
 
 ## 🗺️ Roadmap
 
-### ✅ Phase 1 – MVP
+### ✅ Phase 1 – MVP  || [Summary](https://github.com/Smart-Photo-Storage-Project/docs/blob/main/dev-journal-phase-1/phase1-summary.md)
 - ✅ Backend API in Go for photo upload and metadata handling  
 - ✅ Frontend in Vue.js for image browsing and upload  
 - ✅ Store metadata (e.g., upload time, tags) in MongoDB  
 - ✅ Save image files to local disk (`/uploads`)  
 - ✅ Dockerized backend and frontend services  
 
-### ✅ Phase 2 – ML & Semantic Search Integration
+### ✅ Phase 2 – ML & Semantic Search Integration || [Summary](https://github.com/Smart-Photo-Storage-Project/docs/blob/main/dev-journal-phase-2/phase2-summary.md)
 - ✅ Create external FastAPI service for image embedding (CLIP/m-CLIP)  
 - ✅ Call inference service from backend after upload  
 - ✅ Store image embeddings in **Qdrant** (vector DB)  
