@@ -43,11 +43,17 @@ This project is designed to showcase real-world engineering skills across backen
 - ✅ Store image embeddings in **Qdrant** (vector DB)  
 - ✅ Implement basic semantic search using cosine similarity  
 
-### 🔄 Phase 3 – Asynchronous Architecture & Object Storage *(In Progress)*
-- [ ] Add message broker (RabbitMQ)  
-- [ ] Queue image embedding jobs on upload  
-- [ ] Migrate image storage from local disk to **MinIO (S3-compatible)**  
-- [ ] Move toward a loosely coupled, production-ready pipeline  
+### 🔄 Phase 3 – Scalable Architecture & Async Processing *(In Progress)*
+
+- ✅ Migrate image embedding workflow to asynchronous design using **RabbitMQ**
+
+
+- 🔄 Migrate image storage from local disk to **MinIO (S3-compatible)**
+
+- 🔄 Refactor long methods and improve code quality
+  - Use Go `context.Context` to allow cancelable requests to external services (e.g. inference)
+
+- 🔄 Add **notification feature** to notify frontend when photo has been fully processed (embedding completed)
 
 ### 🔜 Phase 4 – Polish and Deploy
 - [ ] CI/CD pipeline (GitHub Actions or similar)  
@@ -79,9 +85,9 @@ The system consists of modular services:
 | **Frontend** | Vue.js |
 | **Database** | MongoDB (stores metadata and embeddings in MVP) |
 | **ML Service** | Python + FastAPI (uses CLIP/BLIP for embeddings) |
-| **Queue (Phase 3+)** | RabbitMQ |
-| **Image Storage** | Local Disk → MinIO (Phase 5) |
-| **Vector DB (Phase 5)** | Qdrant or Weaviate |
+| **Queue** | RabbitMQ |
+| **Image Storage** | Local Disk → MinIO  |
+| **Vector DB** | Qdrant or Weaviate |
 | **Deployment** | Docker, Docker Compose |
 | **CI/CD** | GitHub Actions (planned) |
 
