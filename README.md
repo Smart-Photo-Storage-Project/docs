@@ -41,19 +41,18 @@ This project is designed to showcase real-world engineering skills across backen
 - ✅ Create external FastAPI service for image embedding (CLIP/m-CLIP)  
 - ✅ Call inference service from backend after upload  
 - ✅ Store image embeddings in **Qdrant** (vector DB)  
-- ✅ Implement basic semantic search using cosine similarity  
+- ✅ Implement semantic search using cosine similarity  
 
 ### 🔄 Phase 3 – Scalable Architecture & Async Processing *(In Progress)*
 
 - ✅ Migrate image embedding workflow to asynchronous design using **RabbitMQ**
 
+- ✅ Add **notification feature** to notify frontend when photo has been fully processed (embedding completed)
 
 - 🔄 Migrate image storage from local disk to **MinIO (S3-compatible)**
 
 - 🔄 Refactor long methods and improve code quality
   - Use Go `context.Context` to allow cancelable requests to external services (e.g. inference)
-
-- 🔄 Add **notification feature** to notify frontend when photo has been fully processed (embedding completed)
 
 ### 🔜 Phase 4 – Polish and Deploy
 - [ ] CI/CD pipeline (GitHub Actions or similar)  
